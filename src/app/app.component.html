@@ -28,4 +28,19 @@
 <!--  <button type="button" (click)="changeStyle()">Change style</button>-->
 <!--</div>-->
 
-<p appMyDirective>Style me!</p>
+<!--<p appMyDirective>Style me!</p>-->
+
+<p>top movies:</p>
+<ul>
+  <li *ngFor="let movie of topMovies">
+    {{movie.title}} [{{movie.director}}]
+  </li>
+</ul>
+
+<p>top worst movies:</p>
+  <ul>
+  <li *ngFor="let movie of bottomMovies">
+    {{movie.title}} [{{movie.director}}]
+  </li>
+</ul>
+

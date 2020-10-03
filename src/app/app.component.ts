@@ -1,19 +1,37 @@
 import {Component, OnInit} from '@angular/core';
+import {MyDirectiveDirective} from './my-directive.directive';
+import {MoviesServiceService} from './movies-service.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [MoviesServiceService]
 })
 export class AppComponent implements OnInit {
-  isDark = false;
+  private service: MoviesServiceService;
+  topMovies: any;
+  bottomMovies: any;
+
+  constructor(myService: MoviesServiceService) {
+    this.service = myService;
+  }
 
   ngOnInit(): void {
+    this.topMovies = this.service.getTopMovies();
+    this.bottomMovies = this.service.getBottomMovies();
   }
 
-  changeStyle(): void {
-    this.isDark = !this.isDark;
-  }
+
+  // Zadanie 7
+  // isDark = false;
+  //
+  // ngOnInit(): void {
+  // }
+  //
+  // changeStyle(): void {
+  //   this.isDark = !this.isDark;
+  // }
 
   // zadanie 6
   // borderStyle = '1px solid black';
