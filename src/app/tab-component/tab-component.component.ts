@@ -15,5 +15,4 @@ export class TabComponentComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
