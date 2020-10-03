@@ -6,6 +6,7 @@ import { MyComponentComponent } from './my-component/my-component.component';
 import { TabComponentComponent } from './tab-component/tab-component.component';
 import { TabContentComponentComponent } from './tab-content-component/tab-content-component.component';
 import { MyDirectiveDirective } from './my-directive.directive';
+import { MyPipePipe } from './my-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { MyDirectiveDirective } from './my-directive.directive';
     MyComponentComponent,
     TabComponentComponent,
     TabContentComponentComponent,
-    MyDirectiveDirective
+    MyDirectiveDirective,
+    MyPipePipe
   ],
   imports: [
     BrowserModule
