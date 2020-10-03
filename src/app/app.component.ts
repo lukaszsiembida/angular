@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {MyDirectiveDirective} from './my-directive.directive';
 import {MoviesServiceService} from './movies-service.service';
 
@@ -9,18 +9,26 @@ import {MoviesServiceService} from './movies-service.service';
   providers: [MoviesServiceService]
 })
 export class AppComponent implements OnInit {
-  private service: MoviesServiceService;
-  topMovies: any;
-  bottomMovies: any;
 
-  constructor(myService: MoviesServiceService) {
-    this.service = myService;
-  }
+  // zadanie 9
+
 
   ngOnInit(): void {
-    this.topMovies = this.service.getTopMovies();
-    this.bottomMovies = this.service.getBottomMovies();
   }
+
+  // zadanie 10-12
+  // private service: MoviesServiceService;
+  // topMovies: any;
+  // bottomMovies: any;
+  //
+  // constructor(myService: MoviesServiceService) {
+  //   this.service = myService;
+  // }
+  //
+  // ngOnInit(): void {
+  //   this.topMovies = this.service.getTopMovies();
+  //   this.bottomMovies = this.service.getBottomMovies();
+  // }
 
 
   // Zadanie 7

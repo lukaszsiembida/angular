@@ -30,25 +30,30 @@
 
 <!--<p appMyDirective>Style me!</p>-->
 
-<p>top movies:</p>
-<ul>
-  <li *ngFor="let movie of topMovies">
-    {{movie.title}} [{{movie.director}}]
-  </li>
-</ul>
 
-<p>top worst movies:</p>
-<ul>
-  <li *ngFor="let movie of bottomMovies">
-    {{movie.title}} [{{movie.director}}]
-  </li>
-</ul>
 
-<!--pipes-->
+<!--zadanie 10-12-->
+<!--<p>top movies:</p>-->
+<!--<ul>-->
+<!--  <li *ngFor="let movie of topMovies">-->
+<!--    {{movie.title}} [{{movie.director}}]-->
+<!--  </li>-->
+<!--</ul>-->
 
-{{1234.23 | currency: 'PLN'}}<br/>
-{{'Mon Aug 24 2020 21:30:23 GMT+0200' | date: 'fullDate' }}<br/>
-<pre>{{{name: 'John', surname: 'Doe'} | json }}</pre> <br/>
-{{0.12 | percent}}<br/>
-{{ [1, 2, 3, 4, 5, 6, 7] | slice: 1: 4}}<br/>
-Dzielenie modulo: {{ 26 | modulo: 4}}<br/>
+<!--<p>top worst movies:</p>-->
+<!--<ul>-->
+<!--  <li *ngFor="let movie of bottomMovies">-->
+<!--    {{movie.title}} [{{movie.director}}]-->
+<!--  </li>-->
+<!--</ul>-->
+
+<!--&lt;!&ndash;pipes&ndash;&gt;-->
+
+<!--{{1234.23 | currency: 'PLN'}}<br/>-->
+<!--{{'Mon Aug 24 2020 21:30:23 GMT+0200' | date: 'fullDate' }}<br/>-->
+<!--<pre>{{{name: 'John', surname: 'Doe'} | json }}</pre> <br/>-->
+<!--{{0.12 | percent}}<br/>-->
+<!--{{ [1, 2, 3, 4, 5, 6, 7] | slice: 1: 4}}<br/>-->
+<!--Dzielenie modulo: {{ 26 | modulo: 4}}<br/>-->
+
+<p appMyDirective>Style me!</p>
