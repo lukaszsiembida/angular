@@ -7,15 +7,17 @@
 <!--  {{i+1}}.{{movie.title}}-->
 <!--</app-my-component>-->
 
-<!--zadanie 5-->
-<div>
-  <app-tab-component [active]="isSelected(1)" (click)="setTab(1)">Tab1</app-tab-component>
-  <app-tab-component [active]="isSelected(2)" (click)="setTab(2)">Tab2</app-tab-component>
-  <app-tab-component [active]="isSelected(3)" (click)="setTab(3)">Tab3</app-tab-component>
-</div>
-<div [ngSwitch]="tab">
-<app-tab-content-component *ngSwitchCase="1">Tab content 1</app-tab-content-component>
-<app-tab-content-component *ngSwitchCase="2">Tab content 2</app-tab-content-component>
-<app-tab-content-component *ngSwitchCase="3">Tab content 3</app-tab-content-component>
-<app-tab-content-component *ngSwitchDefault>Select tab</app-tab-content-component>
-</div>
+<!--&lt;!&ndash;zadanie 5&ndash;&gt;-->
+<!--<div>-->
+<!--  <app-tab-component [active]="isSelected(1)" (click)="setTab(1)">Tab1</app-tab-component>-->
+<!--  <app-tab-component [active]="isSelected(2)" (click)="setTab(2)">Tab2</app-tab-component>-->
+<!--  <app-tab-component [active]="isSelected(3)" (click)="setTab(3)">Tab3</app-tab-component>-->
+<!--</div>-->
+<!--<div [ngSwitch]="tab">-->
+<!--<app-tab-content-component *ngSwitchCase="1">Tab content 1</app-tab-content-component>-->
+<!--<app-tab-content-component *ngSwitchCase="2">Tab content 2</app-tab-content-component>-->
+<!--<app-tab-content-component *ngSwitchCase="3">Tab content 3</app-tab-content-component>-->
+<!--<app-tab-content-component *ngSwitchDefault>Select tab</app-tab-content-component>-->
+<!--</div>-->
+
+<p style="padding: 1rem" [ngStyle]="style">Style me!</p>

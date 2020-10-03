@@ -1,20 +1,38 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  tab = 0;
+export class AppComponent implements OnInit {
+  borderStyle = '1px solid black';
+  alertStyle = {
+    color: 'red',
+    fontWeight: 'bold',
+    borderBottom: this.borderStyle
+  };
 
-  setTab(num: number): void {
-    this.tab = num;
+  style: any;
+
+  setStyle(style: any): void {
+    this.style = style;
   }
 
-  isSelected(num: number): boolean {
-    return this.tab === num;
+  ngOnInit(): void {
+    this.setStyle(this.alertStyle);
   }
+
+  // zadanie 5
+  // tab = 0;
+  //
+  // setTab(num: number): void {
+  //   this.tab = num;
+  // }
+  //
+  // isSelected(num: number): boolean {
+  //   return this.tab === num;
+  // }
 
   // zadanie 4
   // topMovies = [
