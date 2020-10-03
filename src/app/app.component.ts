@@ -6,22 +6,32 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  borderStyle = '1px solid black';
-  alertStyle = {
-    color: 'red',
-    fontWeight: 'bold',
-    borderBottom: this.borderStyle
-  };
-
-  style: any;
-
-  setStyle(style: any): void {
-    this.style = style;
-  }
+  isDark = false;
 
   ngOnInit(): void {
-    this.setStyle(this.alertStyle);
   }
+
+  changeStyle(): void {
+    this.isDark = !this.isDark;
+  }
+
+  // zadanie 6
+  // borderStyle = '1px solid black';
+  // alertStyle = {
+  //   color: 'red',
+  //   fontWeight: 'bold',
+  //   borderBottom: this.borderStyle
+  // };
+  //
+  // style: any;
+  //
+  // setStyle(style: any): void {
+  //   this.style = style;
+  // }
+
+  // ngOnInit(): void {
+  //   this.setStyle(this.alertStyle);
+  // }
 
   // zadanie 5
   // tab = 0;
