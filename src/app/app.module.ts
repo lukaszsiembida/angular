@@ -14,12 +14,14 @@ import { LoginComponent } from './login/login.component';
 import { NewsComponent } from './news/news.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {Route, RouterModule, Routes} from '@angular/router';
+import {APIResolver} from './resolver/API Resolver';
 
 // zad 20
 const appRotes: Routes = [
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    resolve: {message: APIResolver} // zad 21
   },
   {
     path: 'home',
@@ -62,7 +64,7 @@ const appRotes: Routes = [
     //   FormsModule // dla zadania 13
     RouterModule.forRoot(appRotes) // zad 20
   ],
-  providers: [],
+  providers: [APIResolver /* zad20 */],
   bootstrap: [AppComponent]
 })
 export class AppModule {
