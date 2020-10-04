@@ -4,6 +4,7 @@ import {MoviesServiceService} from './movies-service.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {UserData} from './model/UserData';
+import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,36 +14,57 @@ import {UserData} from './model/UserData';
 })
 export class AppComponent implements OnInit {
 
-  signupForm: FormGroup;
+  isLoading = true;
 
-  constructor(private http: HttpClient) {
+  // signupForm: FormGroup;
+  // zad 21
+  // constructor(private http: HttpClient) {
+  //
+  // }
 
+  constructor(private router: Router) {
+    router.events.subscribe((value: RouterEvent) => this.checkEvent(value));
   }
 
   ngOnInit(): void {
-    this.signupForm = new FormGroup({
-      id: new FormControl(),
-      userId: new FormControl(),
-      title: new FormControl(),
-      body: new FormControl()
-    })
   }
 
-  onSubmit(): void{
-    console.log(this.signupForm);
+  checkEvent(routeEvent: RouterEvent) {
+    if (routeEvent instanceof NavigationStart) {
+      this.isLoading = true;
+    } else if (routeEvent instanceof NavigationEnd
+      || routeEvent instanceof NavigationCancel
+      || routeEvent instanceof NavigationError) {
+      this.isLoading = false;
+    }
   }
 
-  loadValues(): void {
-this.http.get('http://jsonplaceholder.typicode.com/posts/1')
-  .subscribe((data: {id: number, userId: number, title: string, body: string}) => {
-    this.signupForm.patchValue(data);
-     // zadanie 19
-    // this.signupForm.controls.id.patchValue(data.id);
-    // this.signupForm.controls.userId.patchValue(data.userId);
-    // this.signupForm.controls.title.patchValue(data.title);
-    // this.signupForm.controls.body.patchValue(data.body);
-  });
-  }
+  // zad 21
+  // ngOnInit(): void {
+  //   this.signupForm = new FormGroup({
+  //     id: new FormControl(),
+  //     userId: new FormControl(),
+  //     title: new FormControl(),
+  //     body: new FormControl()
+  //   });
+  // }
+
+  // zad 21
+  // onSubmit(): void {
+  //   console.log(this.signupForm);
+  // }
+  //
+  // loadValues(): void {
+  //   this.http.get('http://jsonplaceholder.typicode.com/posts/1')
+  //     .subscribe((data: { id: number, userId: number, title: string, body: string }) => {
+  //       this.signupForm.patchValue(data);
+  //       // zadanie 19
+  //       // this.signupForm.controls.id.patchValue(data.id);
+  //       // this.signupForm.controls.userId.patchValue(data.userId);
+  //       // this.signupForm.controls.title.patchValue(data.title);
+  //       // this.signupForm.controls.body.patchValue(data.body);
+  //     });
+  // }
 
   // zadanie 15 -18
   // http: HttpClient;
