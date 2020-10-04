@@ -2,7 +2,7 @@ import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {MyDirectiveDirective} from './my-directive.directive';
 import {MoviesServiceService} from './movies-service.service';
 import {FormControl, FormGroup} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {UserData} from './model/UserData';
 
 @Component({
@@ -27,19 +27,39 @@ export class AppComponent implements OnInit {
       age: new FormControl(),
       country: new FormControl()
     });
-    this.getFormServer();
+    // this.getFormServer();  zadanie 15
+    this.sendToServer();
   }
 
   onSubmit(): void {
     console.log(this.modelForm.value);
   }
 
-  getFormServer(): void{
+  getFormServer(): void {
     this.http.get('http://jsonplaceholder.typicode.com/posts/1').subscribe(value => {
       this.object = value as UserData; // rzutowanie
       console.log(value);
     });
   }
+
+  sendToServer(): void{
+    const httpHeader ={
+    headers: new HttpHeaders({'Content-type' : 'application/json ; charset=UTF-8'})
+    };
+    const body: UserData = {title: 'foo', body: 'bar', userId: 1} as UserData;
+    this.http.post('http://jsonplaceholder.typicode.com/posts/', body, httpHeader)
+      .subscribe(response => {this.object = response as UserData;
+      console.log(response);
+  });
+}
+
+  // zad 15
+  // getFormServer(): void{
+  //   this.http.get('http://jsonplaceholder.typicode.com/posts/1').subscribe(value => {
+  //     this.object = value as UserData; // rzutowanie
+  //     console.log(value);
+  //   });
+
 
   // zadanie 14
   // modelForm: any;
