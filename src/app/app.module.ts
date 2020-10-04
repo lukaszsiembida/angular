@@ -15,6 +15,8 @@ import { NewsComponent } from './news/news.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {Route, RouterModule, Routes} from '@angular/router';
 import {APIResolver} from './resolver/API Resolver';
+import {AuthGuard} from './routerGuards/AuthGuard';
+import {AuthService} from './services/AuthService';
 
 // zad 20
 const appRotes: Routes = [
@@ -31,6 +33,7 @@ const appRotes: Routes = [
   {
     path: 'news/:newsId',
     component: NewsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '',
@@ -64,7 +67,9 @@ const appRotes: Routes = [
     //   FormsModule // dla zadania 13
     RouterModule.forRoot(appRotes) // zad 20
   ],
-  providers: [APIResolver /* zad20 */],
+  providers: [APIResolver /* zad20 */,
+    AuthGuard, AuthService // zad 23
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
