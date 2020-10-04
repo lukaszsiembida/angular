@@ -2,6 +2,8 @@ import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {MyDirectiveDirective} from './my-directive.directive';
 import {MoviesServiceService} from './movies-service.service';
 import {FormControl, FormGroup} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {UserData} from './model/UserData';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +12,13 @@ import {FormControl, FormGroup} from '@angular/forms';
   // providers: [MoviesServiceService]   // dla zadania 10-12
 })
 export class AppComponent implements OnInit {
+  http: HttpClient;
   modelForm: any;
+  object: UserData = new UserData();
+
+  constructor(httpClient: HttpClient) {
+    this.http = httpClient;
+  }
 
   ngOnInit(): void {
     this.modelForm = new FormGroup({
@@ -19,11 +27,36 @@ export class AppComponent implements OnInit {
       age: new FormControl(),
       country: new FormControl()
     });
+    this.getFormServer();
   }
 
   onSubmit(): void {
     console.log(this.modelForm.value);
   }
+
+  getFormServer(): void{
+    this.http.get('http://jsonplaceholder.typicode.com/posts/1').subscribe(value => {
+      this.object = value as UserData; // rzutowanie
+      console.log(value);
+    });
+  }
+
+  // zadanie 14
+  // modelForm: any;
+  //
+  // ngOnInit(): void {
+  //   this.modelForm = new FormGroup({
+  //     firstName: new FormControl(),
+  //     lastName: new FormControl(),
+  //     age: new FormControl(),
+  //     country: new FormControl()
+  //   });
+  // }
+  //
+  // onSubmit(): void {
+  //   console.log(this.modelForm.value);
+  // }
+
 
   // zadanie 13
   // @ViewChild('tdForm')
