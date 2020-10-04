@@ -12,67 +12,98 @@ import {UserData} from './model/UserData';
   // providers: [MoviesServiceService]   // dla zadania 10-12
 })
 export class AppComponent implements OnInit {
-  http: HttpClient;
-  modelForm: any;
-  object: UserData = new UserData();
 
-  constructor(httpClient: HttpClient) {
-    this.http = httpClient;
+  signupForm: FormGroup;
+
+  constructor(private http: HttpClient) {
+
   }
 
   ngOnInit(): void {
-    this.modelForm = new FormGroup({
-      firstName: new FormControl(),
-      lastName: new FormControl(),
-      age: new FormControl(),
-      country: new FormControl()
-    });
-    // this.getFormServer();  zadanie 15
-    // this.sendToServer(); // zadanie 16
-    // this.updateOnServer(); // zadanie 17
-    this.deleteOnServer(); // zadanie 18
+    this.signupForm = new FormGroup({
+      id: new FormControl(),
+      userId: new FormControl(),
+      title: new FormControl(),
+      body: new FormControl()
+    })
   }
 
-  onSubmit(): void {
-    console.log(this.modelForm.value);
+  onSubmit(): void{
+    console.log(this.signupForm);
   }
 
-  getFormServer(): void {
-    this.http.get('http://jsonplaceholder.typicode.com/posts/1').subscribe(value => {
-      this.object = value as UserData; // rzutowanie
-      console.log(value);
-    });
+  loadValues(): void {
+this.http.get('http://jsonplaceholder.typicode.com/posts/1')
+  .subscribe((data: {id: number, userId: number, title: string, body: string}) => {
+    this.signupForm.controls.id.patchValue(data.id);
+    this.signupForm.controls.userId.patchValue(data.userId);
+    this.signupForm.controls.title.patchValue(data.title);
+    this.signupForm.controls.body.patchValue(data.body)
+  });
   }
 
-  sendToServer(): void {
-    const httpHeader = {
-      headers: new HttpHeaders({'Content-type': 'application/json ; charset=UTF-8'})
-    };
-    const body: UserData = {title: 'foo', body: 'bar', userId: 1} as UserData;
-    this.http.post('http://jsonplaceholder.typicode.com/posts/', body, httpHeader)
-      .subscribe(response => {
-        this.object = response as UserData;
-        console.log(response);
-      });
-  }
-    updateOnServer(): void{
-      const httpHeader = {
-        headers: new HttpHeaders({'Content-type': 'application/json ; charset=UTF-8'})
-      };
-      const body: UserData = {title: 'foo', body: 'bar', userId: 1, id: 1} as UserData;
-      this.http.put('http://jsonplaceholder.typicode.com/posts/1', body, httpHeader)
-        .subscribe(response => {
-          this.object = response as UserData;
-          console.log(response);
-        });
-    }
-
-    deleteOnServer(){
-    this.http.delete('http://jsonplaceholder.typicode.com/posts/1')
-      .subscribe(response => {
-        console.log(response);
-      });
-    }
+  // zadanie 15 -18
+  // http: HttpClient;
+  // modelForm: any;
+  // object: UserData = new UserData();
+  //
+  // constructor(httpClient: HttpClient) {
+  //   this.http = httpClient;
+  // }
+  //
+  // ngOnInit(): void {
+  //   this.modelForm = new FormGroup({
+  //     firstName: new FormControl(),
+  //     lastName: new FormControl(),
+  //     age: new FormControl(),
+  //     country: new FormControl()
+  //   });
+  //   // this.getFormServer();  zadanie 15
+  //   // this.sendToServer(); // zadanie 16
+  //   // this.updateOnServer(); // zadanie 17
+  //   this.deleteOnServer(); // zadanie 18
+  // }
+  //
+  // onSubmit(): void {
+  //   console.log(this.modelForm.value);
+  // }
+  //
+  // getFormServer(): void {
+  //   this.http.get('http://jsonplaceholder.typicode.com/posts/1').subscribe(value => {
+  //     this.object = value as UserData; // rzutowanie
+  //     console.log(value);
+  //   });
+  // }
+  //
+  // sendToServer(): void {
+  //   const httpHeader = {
+  //     headers: new HttpHeaders({'Content-type': 'application/json ; charset=UTF-8'})
+  //   };
+  //   const body: UserData = {title: 'foo', body: 'bar', userId: 1} as UserData;
+  //   this.http.post('http://jsonplaceholder.typicode.com/posts/', body, httpHeader)
+  //     .subscribe(response => {
+  //       this.object = response as UserData;
+  //       console.log(response);
+  //     });
+  // }
+  //   updateOnServer(): void{
+  //     const httpHeader = {
+  //       headers: new HttpHeaders({'Content-type': 'application/json ; charset=UTF-8'})
+  //     };
+  //     const body: UserData = {title: 'foo', body: 'bar', userId: 1, id: 1} as UserData;
+  //     this.http.put('http://jsonplaceholder.typicode.com/posts/1', body, httpHeader)
+  //       .subscribe(response => {
+  //         this.object = response as UserData;
+  //         console.log(response);
+  //       });
+  //   }
+  //
+  //   deleteOnServer(){
+  //   this.http.delete('http://jsonplaceholder.typicode.com/posts/1')
+  //     .subscribe(response => {
+  //       console.log(response);
+  //     });
+  //   }
 
 
   // zad 15
