@@ -28,7 +28,8 @@ export class AppComponent implements OnInit {
       country: new FormControl()
     });
     // this.getFormServer();  zadanie 15
-    this.sendToServer();
+    // this.sendToServer(); // zadanie 16
+    this.updateOnServer();
   }
 
   onSubmit(): void {
@@ -42,16 +43,28 @@ export class AppComponent implements OnInit {
     });
   }
 
-  sendToServer(): void{
-    const httpHeader ={
-    headers: new HttpHeaders({'Content-type' : 'application/json ; charset=UTF-8'})
+  sendToServer(): void {
+    const httpHeader = {
+      headers: new HttpHeaders({'Content-type': 'application/json ; charset=UTF-8'})
     };
     const body: UserData = {title: 'foo', body: 'bar', userId: 1} as UserData;
     this.http.post('http://jsonplaceholder.typicode.com/posts/', body, httpHeader)
-      .subscribe(response => {this.object = response as UserData;
-      console.log(response);
-  });
-}
+      .subscribe(response => {
+        this.object = response as UserData;
+        console.log(response);
+      });
+  }
+    updateOnServer(): void{
+      const httpHeader = {
+        headers: new HttpHeaders({'Content-type': 'application/json ; charset=UTF-8'})
+      };
+      const body: UserData = {title: 'foo', body: 'bar', userId: 1, id: 1} as UserData;
+      this.http.put('http://jsonplaceholder.typicode.com/posts/', body, httpHeader)
+        .subscribe(response => {
+          this.object = response as UserData;
+          console.log(response);
+        });
+    }
 
   // zad 15
   // getFormServer(): void{
