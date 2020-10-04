@@ -29,7 +29,8 @@ export class AppComponent implements OnInit {
     });
     // this.getFormServer();  zadanie 15
     // this.sendToServer(); // zadanie 16
-    this.updateOnServer();
+    // this.updateOnServer(); // zadanie 17
+    this.deleteOnServer(); // zadanie 18
   }
 
   onSubmit(): void {
@@ -59,12 +60,20 @@ export class AppComponent implements OnInit {
         headers: new HttpHeaders({'Content-type': 'application/json ; charset=UTF-8'})
       };
       const body: UserData = {title: 'foo', body: 'bar', userId: 1, id: 1} as UserData;
-      this.http.put('http://jsonplaceholder.typicode.com/posts/', body, httpHeader)
+      this.http.put('http://jsonplaceholder.typicode.com/posts/1', body, httpHeader)
         .subscribe(response => {
           this.object = response as UserData;
           console.log(response);
         });
     }
+
+    deleteOnServer(){
+    this.http.delete('http://jsonplaceholder.typicode.com/posts/1')
+      .subscribe(response => {
+        console.log(response);
+      });
+    }
+
 
   // zad 15
   // getFormServer(): void{
