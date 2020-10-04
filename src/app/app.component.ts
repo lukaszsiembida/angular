@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {MyDirectiveDirective} from './my-directive.directive';
 import {MoviesServiceService} from './movies-service.service';
 
@@ -6,14 +6,21 @@ import {MoviesServiceService} from './movies-service.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [MoviesServiceService]
+  // providers: [MoviesServiceService]   // dla zadania 10-12
 })
 export class AppComponent implements OnInit {
 
-  // zadanie 9
+  @ViewChild('tdForm')
+  tdForm: any;
 
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(): void {
+    console.log(this.tdForm.value);
   }
 
   // zadanie 10-12

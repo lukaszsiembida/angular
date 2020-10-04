@@ -56,4 +56,14 @@
 <!--{{ [1, 2, 3, 4, 5, 6, 7] | slice: 1: 4}}<br/>-->
 <!--Dzielenie modulo: {{ 26 | modulo: 4}}<br/>-->
 
-<p appMyDirective>Style me!</p>
+<!--zadanie 9-->
+<!--<p appMyDirective>Style me!</p>-->
+
+<!--zadanie 13-->
+<form #tdForm="ngForm" (ngSubmit)="onSubmit()">
+  <label>username: <input name="username" ngModel></label>
+  <label>lastname: <input name="lastname" ngModel></label>
+  <label>age: <input name="age" ngModel></label>
+  <label>country: <input name="country" ngModel></label>
+  <button type="submit">Wyślij</button>
+</form>

@@ -7,6 +7,7 @@ import { TabComponentComponent } from './tab-component/tab-component.component';
 import { TabContentComponentComponent } from './tab-content-component/tab-content-component.component';
 import { MyDirectiveDirective } from './my-directive.directive';
 import { MyPipePipe } from './my-pipe.pipe';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MyPipePipe } from './my-pipe.pipe';
     MyPipePipe
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule // dla zadania 13
   ],
   providers: [],
   bootstrap: [AppComponent]
