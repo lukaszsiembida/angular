@@ -1,6 +1,7 @@
 import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {MyDirectiveDirective} from './my-directive.directive';
 import {MoviesServiceService} from './movies-service.service';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,19 +10,34 @@ import {MoviesServiceService} from './movies-service.service';
   // providers: [MoviesServiceService]   // dla zadania 10-12
 })
 export class AppComponent implements OnInit {
-
-  @ViewChild('tdForm')
-  tdForm: any;
-
-  constructor() {
-  }
+  modelForm: any;
 
   ngOnInit(): void {
+    this.modelForm = new FormGroup({
+      firstName: new FormControl(),
+      lastName: new FormControl(),
+      age: new FormControl(),
+      country: new FormControl()
+    });
   }
 
   onSubmit(): void {
-    console.log(this.tdForm.value);
+    console.log(this.modelForm.value);
   }
+
+  // zadanie 13
+  // @ViewChild('tdForm')
+  // tdForm: any;
+  //
+  // constructor() {
+  // }
+  //
+  // ngOnInit(): void {
+  // }
+  //
+  // onSubmit(): void {
+  //   console.log(this.tdForm.value);
+  // }
 
   // zadanie 10-12
   // private service: MoviesServiceService;
